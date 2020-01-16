@@ -16,12 +16,46 @@ export default {
 </script>
 
 <style>
+ @font-face {
+            font-family: 'San-Francisco';
+            /* Гарнитура шрифта */
+            src: local(San-Francisco), url(fonts/SFUIText-Regular.ttf);
+            /* Для остальных браузеров */
+        }
+        
+        @font-face {
+            font-family: 'San-Francisco-Light';
+            /* Гарнитура шрифта */
+            src: local(San-Francisco-Light), url(fonts/SFUIText-Light.ttf);
+            /* Для остальных браузеров */
+        }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    margin-top: 0;
+    font-family: 'San-Francisco', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #fff;
 }
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1.3px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
 </style>

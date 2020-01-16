@@ -1,18 +1,17 @@
 <template>
-  <div>
-    
+  <div class="editor">
+    <iphone />
   </div>
 </template>
 
 <script>
+import Iphone from './Phone.vue'
 export default {
-  
+  components:{
+    Iphone
+  }
 }
 </script>
 <style >
-  div{
-    background-color: red;
-    width: 100px;
-    height: 1500px;
-  }
+
 </style>

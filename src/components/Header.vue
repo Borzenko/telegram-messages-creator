@@ -1,7 +1,9 @@
 <template>
   <div class="header">
     <div class="mobile-icons">
-      <span id="time">{{headerInfo.time}}</span>
+      <span id="time">
+        {{headerInfo.time}}
+      </span>
       <ul>
           <li>
               <img id="connection" :src="getImageConnection" style="width: 77px;" alt="">
@@ -20,8 +22,15 @@
               <span style="vertical-align: top;letter-spacing: -1px;margin-left:-8px;">Чаты</span>
           </div>
           <div class="chat-autor">
-              <h3 id="name">{{headerInfo.name}}</h3>
-              <span id="status">{{headerInfo.status}}</span>
+              <h3 id="name">
+                {{headerInfo.name}}
+              </h3>
+              <span 
+              class="status"
+              :class="{'online':isOnline()}"
+              >
+              {{headerInfo.status}}
+              </span>
           </div>
           <div class="photo-autor">
             <img id="avatar" alt="" :src ="headerInfo.avatar">
@@ -40,12 +49,11 @@ import connection3 from '../assets/images/connection3.jpg'
 import connection4 from '../assets/images/connection4.jpg'
 import wifi from '../assets/images/wifi.jpg'
 import LTE from '../assets/images/LTE.jpg'
-export default {
 
-  props:{
-    headerInfo:Object
-  },
+import {mapGetters} from 'vuex'
+export default {
   computed: {
+   ...mapGetters(["headerInfo"]),
    getImageEthernet()
     {
        const ethernetImages = {
@@ -73,7 +81,14 @@ export default {
       }
         return connectionImages[this.headerInfo.connection] || connection4
       }
- }
+ },
+ methods: {
+   isOnline(){
+     if(this.headerInfo.status === 'в сети'){
+       return true
+     }
+   }
+ },
 }
 </script>
 
@@ -97,7 +112,14 @@ export default {
     display: flex;
     height: 50px;
 }
-
+.online {
+    color: rgb(58, 158, 230) !important;
+}
+.status{
+    color:#737D88;
+    font-size: 39px;
+    line-height: 0.8;
+}
 ul {
     display: flex;
     align-items: center;
@@ -135,6 +157,7 @@ li {
 .chat-autor {
     margin-top: -17px;
     margin-left: -80px;
+    text-align: center;
 }
 
 .chat-autor h3 {
@@ -143,11 +166,6 @@ li {
     letter-spacing: 0;
 }
 
-.chat-autor span {
-    font-size: 39px;
-    color: rgb(58, 158, 230);
-    line-height: 0.8;
-}
 
 .photo-autor {
     padding-right: 20px;

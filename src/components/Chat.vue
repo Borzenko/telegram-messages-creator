@@ -1,30 +1,112 @@
 <template>
   <div class="chat">
-    <h6 id="date-chat">{{preChatInfo.dateChat}}</h6>
-    <div class="message-block" v-for="(message, index) in messages" :key="index">
+    <h6 id="date-chat">
+      {{headerInfo.dateChat}}
+    </h6>
+    <div 
+      class="message-block" 
+      v-for="(message, index) in messages" 
+      :key="index"
+    >
       <div 
         class="message" 
-        :class="{'message-send':message.received,
+        :class="{'message-send':messageReiceved(message),
                 'first-message':firstMessage(index),
                 'last-message':lastMessage(index)
-                
-
-        }"
-        
+                }"
       >
+        <button
+          @click="deleteMess(index)"
+          class="delete"
+          :class="{'show':!isEdit}"
+        >
+        X
+        </button>
         <p v-html="message.message"></p>
-        <span>{{message.time}}</span>
+        <span v-if="message.received === 'Отправленно' ">
+          {{message.time}} 
+          <img src="../assets/images/check.jpg">
+        </span>
+        <span v-else> 
+          {{message.time}} 
+        </span>
       </div>
     </div>
+    <button 
+      :class="{'show':!isEdit}" 
+      class="add" 
+      @click="showAdd()"
+    >
+      {{buttonText}}
+    </button>
+      <form @submit.prevent="submit" :class ="{'show': show }">
+
+        <label for="message13"> Сообщение </label>
+        <input  id ="message13" type="text" v-model="newMessage.message">
+
+        <label for="time13"> Время </label>
+        <input  id ="time13" type="text" v-model="newMessage.time">
+
+        <label for="sendOrRecieved"> Сообщение полученно ?</label>
+          <select id="sendOrRecieved" v-model="newMessage.isRecieved">
+            <option value= "Полученно">Полученно</option>
+            <option value= "Отправленно" >Отправленно</option>
+          </select>
+          
+        <button class="addMessage" type ="submit">Отправить</button>
+      </form>
   </div>
 </template>
 <script>
+import {mapGetters, mapMutations} from 'vuex'
 export default {
-  props:{
-    preChatInfo:Object,
-    messages:Array
+  data(){
+    return{
+      show:true,
+
+      newMessage:{
+        message:'',
+        time:'',
+        isRecieved:''
+      }
+    }
   },
+  props:{
+    isEdit:Boolean
+  },
+    computed: {
+      ...mapGetters(["messages","headerInfo"]),
+      buttonText(){
+        if(this.show) {
+        return '+'
+      }
+      return '-' 
+      }
+    },
   methods: {
+    ...mapMutations(["deleteMessage"]),
+    deleteMess(index) {
+      this.deleteMessage(index);
+    },
+    messageReiceved(message){
+      if (message.received === 'Отправленно'){
+        return true
+      } else {
+        return false
+      }
+    },
+    ...mapMutations(["addMessage"]),
+    submit(){
+      this.addMessage({
+        message: this.newMessage.message,
+        time: this.newMessage.time,
+        received: this.newMessage.isRecieved
+      });
+      this.newMessage.message = this.newMessage.time ='';
+    },
+    showAdd(){
+      this.show = !this.show
+    },
     firstMessage(index){
       if(index == 0){
         return true
@@ -49,6 +131,16 @@ export default {
 </script>
 
 <style >
+.addMessage{
+  cursor: pointer;
+  outline: none;
+    width: 450px;
+    height:100px;
+    font-size: 58px;
+    margin-top:10px;
+    border-radius: 30px;
+    padding-left: 10px;
+}
 #date-chat {
     color: white;
     background-color: #16212A;
@@ -56,9 +148,9 @@ export default {
     padding: 0 20px;
     font-size: 43px;
     text-align: center;
-    position: fixed; 
+    position: absolute; 
     border-radius: 50px;
-    left: 12%;
+    left: 47%;
     margin-left: -90px;
     z-index: 1;
 }
@@ -68,7 +160,9 @@ export default {
     padding: 270px 12px 8px 21px;
     font-family: 'San-Francisco-Light';
 }
-
+.show{
+  display: none;
+}
 .message-block {
     width: 100%;
     float: right;
@@ -85,7 +179,20 @@ export default {
     letter-spacing: 0;
     /* margin-bottom: -12px !important; */
 }
-
+.delete{
+    cursor: pointer;
+    outline: none;
+    border-radius:30px;
+    position: absolute;
+    top: 10px;
+    font-size:29px;
+    left: -1px;
+}
+.add{
+  width: 80px;
+  height: 80px;
+  font-size: 60px;
+}
 .message span img {
     width: 44px;
     margin-bottom: -3px;
@@ -157,5 +264,6 @@ export default {
     left:auto;
     width: 89px;
 }
+
 
 </style>

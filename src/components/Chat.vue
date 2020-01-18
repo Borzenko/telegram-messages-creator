@@ -10,6 +10,8 @@
     >
       <div 
         class="message" 
+        :ref="'message_' + index"
+        :style="getMessageStyle(index)"
         :class="{'message-send':messageReiceved(message),
                 'first-message':firstMessage(index),
                 'last-message':lastMessage(index)
@@ -87,6 +89,21 @@ export default {
     ...mapMutations(["deleteMessage"]),
     deleteMess(index) {
       this.deleteMessage(index);
+    },
+    getMessageStyle(index) {
+      setTimeout(() => {
+        // eslint-disable-next-line
+          console.log(index)
+        // eslint-disable-next-line
+            console.log(this.$refs[`message_` + index][0].clientHeight)
+        if(this.$refs[`message_` + index][0].clientHeight < 100) {
+          
+          this.$refs[`message_` + index][0].style.paddingRight = '200px';
+        }
+
+      }, 1)
+      // eslint-disable-next-line
+      console.log(index)
     },
     messageReiceved(message){
       if (message.received === 'Отправленно'){

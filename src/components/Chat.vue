@@ -9,6 +9,7 @@
       :key="index"
     >
       <div 
+        @dblclick="editMode(message)"
         class="message" 
         :ref="'message_' + index"
         :style="getMessageStyle(index)"
@@ -24,14 +25,34 @@
         >
         X
         </button>
-        <p v-html="message.message"></p>
-        <span v-if="message.received === 'Отправленно' ">
-          {{message.time}} 
+        <p 
+          v-show="!message.edit"
+          v-html="message.message">
+        </p>
+         <div v-show="message.edit">
+                    <input 
+                      style ="width:800px; height: 100px;font-size: 58px;margin-bottom: 25px;border-radius: 30px;padding-left: 10px;outline:none;"
+                      v-model="message.message"
+                      @keyup.enter="saveItemMessage(message)"
+                      type="text" />
+                    <input
+                      style ="width:800px; height: 100px;font-size: 58px;margin-bottom: 25px;border-radius: 30px;padding-left: 10px;outline:none;"
+                      v-model="message.time"
+                      @keyup.enter="saveItemMessage(message)"
+                      type="text" />
+        </div>
+
+        <span 
+            v-show="!message.edit"
+            v-if="message.received === 'Отправленно' "
+        >
+          {{message.time}}
           <img src="../assets/images/check.jpg">
         </span>
         <span v-else> 
           {{message.time}} 
         </span>
+
       </div>
     </div>
     <button 
@@ -65,7 +86,7 @@ export default {
   data(){
     return{
       show:true,
-
+      Temp:'',
       newMessage:{
         message:'',
         time:'',
@@ -105,6 +126,12 @@ export default {
       // eslint-disable-next-line
       console.log(index)
     },
+    editMode(message){
+        this.$set(message, 'edit', true);
+    },
+    saveItemMessage: function (message) {
+        message.edit = false;
+            },
     messageReiceved(message){
       if (message.received === 'Отправленно'){
         return true
@@ -122,7 +149,6 @@ export default {
       this.newMessage.message = this.newMessage.time ='';
     },
     showAdd(){
-      
       this.show = !this.show
     },
     firstMessage(index){
@@ -282,6 +308,7 @@ export default {
     left:auto;
     width: 89px;
 }
+
 
 
 </style>

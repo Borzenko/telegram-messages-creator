@@ -119,7 +119,7 @@ export default {
             console.log(this.$refs[`message_` + index][0].clientHeight)
         if(this.$refs[`message_` + index][0].clientHeight < 100) {
           
-          this.$refs[`message_` + index][0].style.paddingRight = '200px';
+          this.$refs[`message_` + index][0].style.paddingRight = '178px';
         }
 
       }, 1)
@@ -210,13 +210,13 @@ export default {
 .message-block {
     width: 100%;
     float: right;
-    padding: 0 22px;
+    padding: 0 20px;
     padding-left: 0px;
 }
 .message span {
     position: absolute;
     right: 32px;
-    bottom: 13px;
+    bottom: 8px;
     color: #6D7D8C;
     font-size: 35px;
     /*  margin-left: 24px; */
@@ -240,7 +240,7 @@ export default {
 .message span img {
     width: 44px;
     margin-bottom: -3px;
-    margin-left: 6px;
+    
 }
 .message {
     margin-top: 2px;
@@ -277,16 +277,20 @@ export default {
     width: 84px;
 }
 .message-send {
-    padding-top: 9px !important;
+    padding-top: 13px !important;
     float: right;
     /* ackground-color: #3B6A96; */
     background-color: #477397;
     margin-bottom: 8px;
     border-radius: 45px 20px 20px 51px;
 }
+.message-send p{
+  margin-right:10px;
+}
 .message-send span {
     /* color: #85B0CF; */
-    color: #80A2C2
+    color: #80A2C2;
+    right: 20px !important;
 }
 .message-send.first-message {
     margin-top: 10px;

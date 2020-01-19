@@ -122,6 +122,7 @@ export default {
       this.newMessage.message = this.newMessage.time ='';
     },
     showAdd(){
+      
       this.show = !this.show
     },
     firstMessage(index){

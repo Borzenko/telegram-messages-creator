@@ -38,8 +38,9 @@
           <option value="3">60%</option>
           <option value="4">50%</option>
           <option value="5">40%</option>
-          <option value="6">20%</option>
-          <option value="7">10%</option>
+          <option value="6">30%</option>
+          <option value="7">20%</option>
+          <option value="8">10%</option>
         </select>
 
       <label for="name"> Имя </label>

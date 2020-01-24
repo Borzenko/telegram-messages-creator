@@ -9,7 +9,7 @@
               <img id="connection" :src="getImageConnection" style="width: 77px;" alt="">
           </li>
           <li>
-              <img id="ethernet" :src="getImageEthernet" style="width: 62px;" alt="">
+              <img id="ethernet" :src="getImageEthernet" style="width: 69px;" alt="">
           </li>
           <li>
               <img id="battery" :src="getImageBattery"  style="width: 96px; margin-top:-3px;" >
@@ -19,7 +19,7 @@
       <div class="chat-title">
           <div class="back-to-chats">
               <img src="../assets/images/strela.jpg" alt="" style="margin-right: -4px;width: 57px;margin-left:-7px;">
-              <span style="vertical-align: top;letter-spacing: -1px;margin-left:-8px;">Чаты</span>
+              <span style="vertical-align: top;letter-spacing: -1px;margin-left:7px;">Чаты</span>
           </div>
           <div class="chat-autor">
               <h3 id="name">
@@ -45,10 +45,14 @@ import battery80 from '../assets/images/battery80.jpg'
 import battery60 from '../assets/images/battery60.jpg'
 import battery50 from '../assets/images/battery50.jpg'
 import battery40 from '../assets/images/battery40.jpg'
+import battery30 from '../assets/images/battery30.jpg'
+import battery20 from '../assets/images/battery20.jpg'
+import connection2 from '../assets/images/connection2.jpg'
 import connection3 from '../assets/images/connection3.jpg'
 import connection4 from '../assets/images/connection4.jpg'
 import wifi from '../assets/images/wifi.jpg'
 import LTE from '../assets/images/LTE.jpg'
+import ThreG from '../assets/images/3G.jpg'
 
 import {mapGetters} from 'vuex'
 export default {
@@ -58,10 +62,10 @@ export default {
     {
        const ethernetImages = {
             1: wifi,
-            2: LTE
+            2: LTE,
+            3: ThreG,
       }
-      // eslint-disable-next-line
-      console.log(this)
+      
         return ethernetImages[this.headerInfo.ethernet] || wifi
       },
     getImageBattery(){
@@ -71,13 +75,16 @@ export default {
             3: battery60,
             4: battery50,
             5: battery40,
+            6: battery30,
+            7:battery20
       }
         return batteryImages[this.headerInfo.battery] || battery100
       },
       getImageConnection(){
         const connectionImages = {
             1: connection4,
-            2: connection3
+            2: connection3,
+            3: connection2
       }
         return connectionImages[this.headerInfo.connection] || connection4
       }
@@ -156,7 +163,7 @@ li {
 }
 .chat-autor {
     margin-top: -17px;
-    margin-left: -80px;
+    margin-left: -72px;
     text-align: center;
 }
 

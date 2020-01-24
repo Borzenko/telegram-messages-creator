@@ -31,88 +31,95 @@ export default {
             // Чтобы добавить эмодзи перейдите на сайт и скопируйте нужный https://ru.piliapp.com/emoji/list/smileys-people/
         },
         messages: [{
-                message: 'Планируем 😀 выкатывать, пока воюем с nginx,gbababab babaababa bbabababa abadbabb ababababa banba',
-                time: '16:25',
+                message: 'я сделал через звездочк',
+                time: '15:42',
                 edit: false,
-                received: 'Полученно'
+                received: true
             },
             {
-                message: '2. 😀 Что нужно ?)',
-                time: '16:15',
+                message: 'Посмотри мб что-то проебал',
+                time: '15:53',
                 edit: false,
-                received: 'Полученно'
+                received: false
             },
             {
-                message: 'тут короче задача такая',
-                time: '16:51',
+                message: 'Короче в старом конфиге была команда',
+                time: '16:12',
                 edit: false,
-                received: 'Отправленно'
+                received: true
             },
             {
-                message: 'для экрана чата',
+                message: 'RewriteBase /',
+                time: '16:12',
+                edit: false,
+                received: true
+            },
+            {
+                message: 'я ее удалил и стало нормально <br/> редиректить',
+                time: '16:12',
+                edit: false,
+                received: true
+            },
+            {
+                message: 'Что эта команда делает ?',
+                time: '16:12',
+                edit: false,
+                received: false
+            },
+            {
+                message: 'ярику показал но его смущает тот факт что мы не особо знает что это делает',
+                time: '16:12',
+                edit: false,
+                received: true
+            },
+            {
+                message: 'она',
+                time: '16:12',
+                edit: false,
+                received: true
+            },
+            {
+                message: 'короче',
+                time: '16:12',
+                edit: false,
+                received: true
+            },
+            {
+                message: 'указывает путь',
+                time: '16:12',
+                edit: false,
+                received: true
+            },
+            {
+                message: 'он просто дописывает',
+                time: '16:12',
+                edit: false,
+                received: true
+            },
+            {
+                message: 'Если получившийся после преобразований запрос является относительным и отличается от исходного, RewriteBase восстановит его, сделав абсолютным. RewriteBase просто допишет себя к запросу слева.',
                 time: '16:16',
                 edit: false,
-                received: 'Отправленно'
+                received: true
             },
             {
-                message: 'сорцы есть',
+                message: 'И почему из-за него не работает ?',
                 time: '16:16',
                 edit: false,
-                received: 'Отправленно'
+                received: false
             },
             {
-                message: 'и пиксель-в-пиксель перенести ее на айос',
+                message: 'оно работает',
                 time: '16:16',
                 edit: false,
-                received: 'Отправленно'
+                received: true
             },
             {
-                message: 'Ну у меня есть верстальщик',
+                img: 'https://gohtml.ru/images/news/151--15-10-03--21-21-00.jpg',
+                message: "Some text text text textSome text text text text textSome text Some text text text text textSome text text text text texttext text text text text",
                 time: '16:16',
                 edit: false,
-                received: 'Полученно'
-            },
-            {
-                message: 'Но я не понял что точно <br> нужно',
-                time: '16:16',
-                edit: false,
-                received: 'Полученно'
-            },
-            {
-                message: 'Теперь буду ставить только с</br>  вами!',
-                time: '16:51',
-                edit: false,
-                received: 'Полученно'
-            },
-            {
-                message: 'Вы лучшие!',
-                time: '16:51',
-                edit: false,
-                received: 'Полученно'
-            },
-            {
-                message: 'Привет, </br> Коэф зашел вообще отлично, спасибо!👍',
-                time: '16:16',
-                edit: false,
-                received: 'Полученно'
-            },
-            {
-                message: 'Привет, </br> Коэф зашел вообще отлично, спасибо!👍',
-                time: '16:16',
-                edit: false,
-                received: 'Полученно'
-            },
-            {
-                message: 'Привет, </br> Коэф зашел вообще отлично, спасибо!👍',
-                time: '16:16',
-                edit: false,
-                received: 'Полученно'
-            },
-            {
-                message: 'Всегда пожалауйста!👌',
-                time: '16:16',
-                edit: false,
-                received: 'Отправленно'
+                received: true
             }
         ]
     },
@@ -134,6 +141,16 @@ export default {
                 })
                 // eslint-disable-next-line
             console.log(state)
+        },
+        pushUp(state, i) {
+            // eslint-disable-next-line
+            console.log(i)
+            let f = state.messages.slice(0, ++i),
+                s = state.messages.slice(i),
+                r = f.splice(-2).reverse();
+            // eslint-disable-next-line
+            state.messages = f.concat(r).concat(s)
+            return state.messages;
         },
         addMessage(state, newMessage) {
             state.messages.push(newMessage);

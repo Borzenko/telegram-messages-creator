@@ -9,24 +9,27 @@
 </template>
 
 <script>
-import Header from './Header.vue'
-import Chat from './Chat.vue'
-import Footer from './Footer.vue'
+import Header from './Header.vue';
+import Chat from './Chat.vue';
+import Footer from './Footer.vue';
+
 export default {
-  components:{
+  components:
+  {
     Header,
     Chat,
-    Footer
+    Footer,
   },
-  props:{
-    isEdit:Boolean
-  }
-}
+  props:
+  {
+    isEdit: Boolean,
+  },
+};
 </script>
 
 <style>
 .iphone{
-    position: relative;
+    position: fixed;
     margin-left:100px;
     background-color: #18222B;
     width: 1242px;

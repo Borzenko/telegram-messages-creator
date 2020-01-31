@@ -6,13 +6,14 @@
 
 <script>
 
-import Editor from './components/Editor.vue'
+import Editor from './components/Editor.vue';
+
 export default {
   name: 'app',
   components: {
-    Editor
-  }
-}
+    Editor,
+  },
+};
 </script>
 
 <style>
@@ -22,7 +23,6 @@ export default {
             src: local(San-Francisco), url(fonts/SFUIText-Regular.ttf);
             /* Для остальных браузеров */
         }
-        
         @font-face {
             font-family: 'San-Francisco-Light';
             /* Гарнитура шрифта */
@@ -30,11 +30,13 @@ export default {
             /* Для остальных браузеров */
         }
 #app {
+
     margin-top: 0;
     font-family: 'San-Francisco', sans-serif;
     font-size: 15px;
     line-height: 1.6;
     color: #fff;
+    zoom: 0.33;
 }
 
 *,
